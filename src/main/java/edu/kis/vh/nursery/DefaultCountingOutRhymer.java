@@ -10,27 +10,30 @@ public class DefaultCountingOutRhymer {
 
     public void countIn(int in) {
         if (!isFull())
-            numbers[++total] = in;
+            numbers[total = getTotal() + 1] = in;
     }
 
     public boolean callCheck() {
-        return total == INT1;
+        return getTotal() == INT1;
     }
 
     public boolean isFull() {
-        return total == 11;
+        return getTotal() == 11;
     }
 
     protected int peekaboo() {
         if (callCheck())
             return INT1;
-        return numbers[total];
+        return numbers[getTotal()];
     }
 
     public int countOut() {
         if (callCheck())
             return INT1;
-        return numbers[total--];
+        return numbers[total = getTotal() - 1];
     }
 
+    public int getTotal() {
+        return total;
+    }
 }
